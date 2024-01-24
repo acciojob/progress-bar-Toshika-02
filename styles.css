@@ -1,1 +1,38 @@
 /*  your css code here. If applicable */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
+
+.circle {
+	display: flex;
+    justify-content: space-between;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ddd;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
