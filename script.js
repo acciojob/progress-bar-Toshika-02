@@ -1,34 +1,45 @@
-//your JS code here. If required.
-let currentStep = 1;
-const totalSteps = 5;
+const circles = document.querySelectorAll('.circle');
+const prevButton = document.getElementById('prev');
+const nextButton = document.getElementById('next');
+let currentActive = 1;
 
-function updateProgressBar() {
-    for (let i = 1; i <= totalSteps; i++) {
-        const circle = document.getElementById(`circle-${i}`);
-        if (i < currentStep) {
-            circle.classList.add('active');
-        } else {
-            circle.classList.remove('active');
-        }
+nextButton.addEventListener('click', () => {
+  currentActive++;
+
+  if (currentActive > circles.length) {
+    currentActive = circles.length;
+  }
+
+  update();
+});
+
+prevButton.addEventListener('click', () => {
+  currentActive--;
+
+  if (currentActive < 1) {
+    currentActive = 1;
+  }
+
+  update();
+});
+
+function update() {
+  circles.forEach((circle, index) => {
+    if (index < currentActive) {
+      circle.classList.add('active');
+    } else {
+      circle.classList.remove('active');
     }
+  });
 
-    document.getElementById('prev').disabled = currentStep === 1;
-    document.getElementById('next').disabled = currentStep === totalSteps;
+  if (currentActive === 1) {
+    prevButton.disabled = true;
+  } else if (currentActive === circles.length) {
+    nextButton.disabled = true;
+  } else {
+    prevButton.disabled = false;
+    nextButton.disabled = false;
+  }
 }
 
-function nextStep() {
-    if (currentStep < totalSteps) {
-        currentStep++;
-        updateProgressBar();
-    }
-}
-
-function prevStep() {
-    if (currentStep > 1) {
-        currentStep--;
-        updateProgressBar();
-    }
-}
-
-updateProgressBar();
 
